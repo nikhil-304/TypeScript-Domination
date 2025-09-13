@@ -45,3 +45,60 @@ getDataOfUser({
   email: "nikhil.shrivastava304@gmail.com",
   password: "nikhil-304",
 });
+
+//@ Extending interfaces
+interface User2 {
+  name: string;
+  email: string;
+  password: string;
+  gender?: string; //Optional property
+}
+
+interface Admin extends User2 {
+  admin: boolean;
+}
+
+function abcd(obj: Admin) {
+  // obj.(name | email | password | gender);
+  obj.admin;
+}
+
+//@ Type aliases
+type sankhya = number;
+let abc: sankhya;
+
+type value = string | number | null;
+let ak: value; //let ak: string | number | null;
+
+//@ Intersection types
+type UserIntersection = {
+  name: string;
+  email: string;
+};
+
+type AdminIntersection = UserIntersection & {
+  getDetails(user: string): void;
+};
+
+function abcde(a: AdminIntersection) {}
+
+//@Classes & Constructor
+class HumanMaker {
+  constructor(
+    public name: string,
+    public surname: string,
+    public isHandsome: boolean
+  ) {}
+}
+
+let h1 = new HumanMaker("Nikhil", "Shrivastava", true);
+
+//@Classes & Constructor -> "this" keyword
+class BottleMaker {
+  public name;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+let b1 = new BottleMaker("Milton");
