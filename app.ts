@@ -102,3 +102,50 @@ class BottleMaker {
 }
 
 let b1 = new BottleMaker("Milton");
+
+// @Classes & Constructor -> "Public and Private" access modifier
+class BottleMaker2 {
+  constructor(
+    public /*| private -> it'll show error, but it'll run*/ name: string
+  ) {}
+}
+
+class MetaBottleMaker extends BottleMaker2 {
+  constructor(name: string) {
+    super(name);
+  }
+
+  getValue() {
+    console.log(this.name);
+  }
+}
+
+let b2 = new MetaBottleMaker("Cello");
+b2.getValue();
+
+// @Classes & Constructor -> "Protected" access modifier
+class BottleMaker3 {
+  protected name: string = "Milton";
+  // Protected access modifier provides same features like private, but with a twist, that it can be inherited (extended) and used in other class
+}
+
+class MetaBottleMaker2 extends BottleMaker3 {
+  public material: string = "metal";
+
+  constructor() {
+    super(); // Initialize the parent class properties
+  }
+
+  accessName() {
+    console.log(this.name + ": ", this.material);
+  }
+
+  changeName() {
+    this.name = "Cello";
+  }
+}
+
+let b3 = new MetaBottleMaker2();
+b3.accessName(); // This should now print "Milton: metal"
+b3.changeName();
+b3.accessName(); // This should print "Cello: metal"
