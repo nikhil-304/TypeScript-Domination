@@ -149,3 +149,16 @@ let b3 = new MetaBottleMaker2();
 b3.accessName(); // This should now print "Milton: metal"
 b3.changeName();
 b3.accessName(); // This should print "Cello: metal"
+
+//@Optional Class and Object Properties
+class UserDets {
+  constructor(public readonly userName: string) {}
+  changeName() {
+    this.userName = "hellyow";
+    //readonly gives error when you try to change the variable's value
+    //Cannot assign to 'userName' because it is a read-only property
+  }
+}
+
+let u1 = new UserDets("Nikhil");
+u1.changeName();
