@@ -225,3 +225,45 @@ class Payments {
 //Abstract classes do not require instances to be created; they are used solely for inheritance and extending in other classes. They act as base classes, containing generic functionality. To make them more specific, they can be extended, and specific functionality can be added in the derived classes.
 
 class Paytm extends Payments {}
+
+//@Functions
+function func1(): void {}
+function func2(): string {
+  return "hellyew";
+}
+
+//@Function Types
+function funct(name: string, callback: (arg: string) => void) {
+  callback("Nikudie");
+}
+
+funct("Nikhil", (arg: string) => {
+  console.log(arg);
+});
+
+//@Optional & Default Parameters
+function personalDets(
+  name: string,
+  age: number,
+  gender: string = "Prefer not to say"
+) {
+  console.log(name, age, gender);
+}
+
+personalDets("Nikhil", 20, "Male");
+personalDets("Dhanashree", 20);
+
+//@Rest/Spread Parameters/Operators
+// function restParams(a: number, b:number, c:number....){}
+//Too much params? need to define that much args in function!
+// No need, just store it in an array using rest/spread operator
+//Instead of defining individual parameters for each possible argument, you can use
+// the 'rest' syntax (...) to collect them into an array and handle them
+// dynamically. This approach is particularly useful when the number of
+// arguments is not fixed or when dealing with a large number of parameters.
+
+function restParams(...arr: number[]) {
+  console.log(arr);
+}
+
+restParams(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 74, 41, 741, 115);
