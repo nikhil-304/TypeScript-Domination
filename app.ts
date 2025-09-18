@@ -267,3 +267,107 @@ function restParams(...arr: number[]) {
 }
 
 restParams(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 74, 41, 741, 115);
+
+//@Function Overloading
+//TypeScript Function Signature
+
+function funcOverload(a: string): void;
+function funcOverload(a: string, b: number): number;
+
+function funcOverload(a: any, b?: any) {
+  if (typeof a === "string" && b === undefined) {
+    console.log("Hey");
+  }
+  if (typeof a === "string" && typeof b === "number") {
+    return 123;
+  } else throw new Error("Something is wrong");
+}
+
+funcOverload("Hey");
+funcOverload("Hey", 12);
+
+//@Generics
+//Generic functions
+function genericFncs<T>(variable: T) {
+  console.log(variable);
+}
+
+genericFncs<string>("This is a string, no error");
+genericFncs<number>(200); //200 means success, means no error because generics
+genericFncs<boolean>(true);
+genericFncs(
+  "Here, even if we don't mention type, TypeScript automatically inferences its type"
+);
+
+//#####################################
+
+function log<T>(val: T) {
+  console.log(val);
+}
+
+log<string>("We replaced console.log to log<type>");
+
+//Generic interfaces
+interface GenericInterface<T> {
+  name: string;
+  age: number;
+  key: T;
+}
+
+function genericInterfaceFunc(obj: GenericInterface<string>) {}
+genericInterfaceFunc({
+  name: "It'll take string",
+  age: 12,
+  key: "This is a generic interface",
+});
+
+//Generic classes
+class GenericClass<T> {
+  constructor(public key: T) {}
+}
+
+let gc1 = new GenericClass<string>("Four Two One Two Two");
+let gc2 = new GenericClass<number>(42122);
+
+console.log(gc1, gc2);
+
+//@Modules
+import { addPayment, getDetails } from "./payment";
+addPayment(741);
+getDetails();
+
+//@Type Assertion
+let aVar: any = 12;
+(aVar as string).charCodeAt;
+(<number>aVar).toString;
+
+//@Type Guards
+function typeGuards(arg: string | number) {
+  // arg. (Here, the intellisense will suggest methods which are common to both string and number)
+
+  //Type Narrowing
+  if (typeof arg === "string") return "It's a string";
+  if (typeof arg === "number") return "It's a number";
+  else throw new Error("Only string and number is accepted in this function");
+}
+
+//Type Guard - instanceof
+class TVRemote {
+  switchTvOff() {
+    console.log("TV Switched Off");
+  }
+}
+
+class CarRemote {
+  switchCarOff() {
+    console.log("Car Switched Off");
+  }
+}
+
+const tv = new TVRemote();
+const car = new CarRemote();
+
+function swithOffDevice(device: TVRemote | CarRemote) {
+  if (device instanceof TVRemote) device.switchTvOff();
+  else if (device instanceof CarRemote) device.switchCarOff();
+}
